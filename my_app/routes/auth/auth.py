@@ -4,7 +4,7 @@ from my_app.models import User
 
 
 
-auth_bp = Blueprint('auth_bp',__name__,template_folder='templates',static_folder='static')
+auth_bp = Blueprint('auth', __name__, template_folder='templates', static_folder='static',static_url_path='routes/auth/auth/static')
 
 @auth_bp.route('/register',methods=['GET','POST'])
 def register():
@@ -16,11 +16,11 @@ def register():
             'email':form.email.data,
             'password':form.password.data,
         }
-        user = User.add_user(**user_data)
+        user = User.add_user(user_data)
         if not user:
             pass
         flash('Your account has been created! You can now log in.', 'success')
-        return redirect(url_for('auth_bp.login'))
+        return redirect(url_for('auth.login'))
     return  render_template('register.html',title='register',form=form)
 
         
@@ -28,18 +28,20 @@ def register():
 def login():
     form=LoginForm()
     if form.validate_on_submit():
+        print(form.email.data)
         user_data = {
             'email':form.email.data,
             'password':form.password.data
         }
         
-        user = User.by_email(form.data.email)
+        user = User.by_email(form.email.data)
         if not user:
             flash('User with this email not found.', 'error')
-            return redirect(url_for('auth_bp.login'))
+            return redirect(url_for('auth.login'))
         if not user.verify_password(form.password.data):
             flash('User password not correct.', 'error')
-            return redirect(url_for('auth_bp.login'))
+            return redirect(url_for('auth.login'))
         flash('Login was successful.', 'success')
-        return redirect(url_for('login.html'),title='Login',form=form)
+        return 'success'
+    return render_template('login.html',title='Login',form=form)
 

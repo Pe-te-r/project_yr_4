@@ -18,6 +18,8 @@ class User(db.Model):
     @classmethod
     def add_user(cls,user):
         try:
+            print(user)
+            print(user['email'])
             new_user=cls(id=uuid4(),email=user['email'],first_name=user['first_name'],last_name=user['last_name'])
             db.session.add(new_user)
             db.session.commit()

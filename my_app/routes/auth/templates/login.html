@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% comment %} <link rel="stylesheet" href="{{ url_for('auth.static', filename='auth/styles.css') }}"> {% endcomment %}
+    
+    <link rel="stylesheet" href="{{ url_for('.static', filename='login.css') }}">
     <title>Login</title>
 </head>
 <body>
@@ -27,6 +28,8 @@
         <div>
             {{ form.submit() }}
         </div>
+        
     </form>
+    <p>Static file URL: {{ url_for('auth.static', filename='login.css') }}</p>
 </body>
 </html>
