@@ -1,5 +1,6 @@
+# from ..config import DevelopmentConfig
 from flask import Flask
-from .config import DevelopmentConfig
+from config import DevelopmentConfig
 from .blueprint_module import blueprint
 
 def create_app(config_class=DevelopmentConfig):
@@ -12,4 +13,5 @@ def create_app(config_class=DevelopmentConfig):
     # Initialize other extensions if needed
     # e.g., db.init_app(app)
 
+    retu        
     return app
