@@ -1,5 +1,13 @@
-from flask import Blueprint
+from flask import Blueprint,jsonify
 
-auth_bp = Blueprint('auth_bp',__name__,template_folder='templates',static_folder='static')
+from .auth import auth_bp
+
+
+# @auth_bp.route('/users',methods=['GET'])
+# def get():
+#     return jsonify({'message':'this is a login message'})
+        
+
+
 
 
