@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.venv
+
+# Flask logs
+instance/
+*.log
+logs/
+*.out
+*.err
+
+# Database
+*.sqlite3
+*.db
+*.sqlite
+migrations/
+
+# Environment variables
+.env
+*.env
+config.json
+
+# Pytest / Coverage reports
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.pytest_cache/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Editor & OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
