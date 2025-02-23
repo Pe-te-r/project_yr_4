@@ -13,9 +13,33 @@ class User(db.Model):
 
     @classmethod
     def add_user(cls,user):
-        new_user=cls(id=uuid4(),email=user['email'],first_name=user['first_name'])
+        try:
+            new_user=cls(id=uuid4(),email=user['email'],first_name=user['first_name'],last_name=user['last_name'])
+            db.session.add(new_user)
+            db.session.commit()
+            db.session.refresh(new_user)
+            if Password.save_password(new_user.id,user['password']):
+                return True
+            db.session.delete(new_user)
+            return False
+
+        except:
+            db.session.rollback()
+            return False
 
 class Password(db.Model):
     __tablename__='password'
     user_id = db.Column(db.UUID,db.ForeignKey('user.id'),primary_key=True)
     password=db.Column(db.STring(120),nullable=False)
+    
+    @classmethod
+    def save_password(cls,user_id,password):
+        try:
+            new=cls(user_id=user_id,password=password)
+            db.session.add(new)
+            db.session.commit()
+            return True
+        except:
+            db.session.rollback()
+            return False
+        
