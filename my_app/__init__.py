@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, render_template
 from flask_migrate import Migrate
 from my_app.models import db
 from config import DevelopmentConfig
@@ -15,7 +15,7 @@ def create_app(config_class=DevelopmentConfig):
 
     @app.route('/', methods=['GET'])
     def index():
-        return jsonify({'message': 'hello user'})
+        return render_template('index.html')
 
 
     return app
