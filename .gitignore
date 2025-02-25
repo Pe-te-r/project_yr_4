@@ -1,46 +1,51 @@
-# Byte-compiled / optimized / DLL files
+# Virtual environment
+venv/
+env/
+.Venv/
+.VENV/
+pip-selfcheck.json
+
+# Python cache and compiled files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environment
-venv/
-env/
-*.venv
-
-# Flask logs
-instance/
-*.log
-logs/
-*.out
-*.err
-
-# Database
-*.sqlite3
-*.db
-*.sqlite
-migrations/
-
-# Environment variables
+# Environment variables and secrets
 .env
 *.env
-config.json
+config.py  # If it contains sensitive information
 
-# Pytest / Coverage reports
-.coverage
-.tox/
-nosetests.xml
-coverage.xml
-*.cover
-*.pytest_cache/
+# Database files
+*.sqlite3
+*.db
 
-# Jupyter Notebooks
-.ipynb_checkpoints/
+# Logs and debugging
+*.log
+logs/
+debug.log
 
-# Editor & OS files
+# IDE and Editor files
 .vscode/
 .idea/
 *.swp
 *.swo
+
+# MacOS and Linux system files
 .DS_Store
 Thumbs.db
+
+# Docker-related files (if using Docker)
+docker-compose.override.yml
+
+# Pytest and Coverage reports
+htmlcov/
+.coverage
+*.cover
+.cache
+nosetests.xml
+coverage.xml
+
+
+
+instance/
+migrations/

@@ -11,15 +11,19 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         user_data={
-            'username':form.username.data,
+            'full_name':form.full_name.data,
+            'id_type':form.id_type.data,
+            'national_id':form.id_number.data,
+            'phone':form.phone_number.data,
             'email':form.email.data,
             'password':form.password.data,
         }
-        print(user_data)
+
         user = User.add_user(user_data)
         print(user)
         if not user:
-            pass
+            flash('Your account has been created! You can now log in.', 'success')
+            return render_template(url_for('auth.register'))
         flash('Your account has been created! You can now log in.', 'success')
         return redirect(url_for('auth.login'))
     return  render_template('register.html',title='register',form=form)
