@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Home - SHA Kenya{% endblock %}
+
+{% block content %}
+  <!-- Home Page -->
+  <div class="container-fluid row mt-5 pt-5" style="height: 100vh;" id="home">
+    <div class="container text-start col-md-6 col-sm-12 col-lg-5 p-5">
+      <div class="container shadow">
+        <h1><strong>Introducing Social Health <span class="text-primary">(SHA)</span></strong></h1>
+        <h5 class="mt-4">Ensuring a healthier, more equitable future for all through comprehensive coverage and quality care without financial worry</h5>
+        <div class="d-grid mt-5">
+          <button class="btn p-2 mb-4 btn-block btn-success">
+            <a href="{{ url_for('auth.register') }}" class="text-light" style="text-decoration: none;">Register Now</a>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-6 container col-sm-12 pt-5">
+      <img src="{{ url_for('static', filename='images/homebg.PNG') }}" alt="Home Background" style="width:100%;">
+    </div>
+  </div>
+  <!-- End of Home Page -->
+{% endblock %}

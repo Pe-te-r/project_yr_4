@@ -4,7 +4,7 @@ from my_app.models import User
 
 
 
-auth_bp = Blueprint('auth', __name__, template_folder='templates', static_folder='static',static_url_path='routes/auth/auth/static')
+auth_bp = Blueprint('auth', __name__, template_folder='templates')
 
 @auth_bp.route('/register',methods=['GET','POST'])
 def register():
