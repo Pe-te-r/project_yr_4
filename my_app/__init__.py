@@ -18,9 +18,7 @@ def create_app(config_class=DevelopmentConfig):
     # Register Blueprints
     register_blueprints(app)
 
-    # @app.route('/', methods=['GET'])
-    # def index():
-    #     return render_template('index.html')
+
 
 
     return app

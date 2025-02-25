@@ -1,12 +1,18 @@
 from uuid import uuid4,UUID
+from enum import Enum
 from my_app.models import db
-
+class IDType(Enum):
+    KENYAN_CITIZEN = "Kenyan Citizen"
+    FOREIGN_RESIDENT = "Foreign Resident"
+    REFUGEE = "Refugee"
+    MANDATE_NUMBER = "Mandate Number"
+    
 class User(db.Model):
     __tablename__='user'
     id=db.Column(db.UUID,nullable=False,primary_key=True)
+    id_type = db.Column(db.Enum,nullable = False,default = IDType.KENYAN_CITIZEN)
     email=db.Column(db.String(80),nullable=False)
-    first_name=db.Column(db.String(80),nullable=False)
-    last_name=db.Column(db.String(80),nullable=False)
+    username=db.Column(db.String(80),nullable=False)
 
     # relationship
     password = db.Relationship('Password',backref='user',uselist=False)
@@ -20,7 +26,7 @@ class User(db.Model):
         try:
             print(user)
             print(user['email'])
-            new_user=cls(id=uuid4(),email=user['email'],first_name=user['first_name'],last_name=user['last_name'])
+            new_user=cls(id=uuid4(),email=user['email'],username=user['username'])
             db.session.add(new_user)
             db.session.commit()
             db.session.refresh(new_user)

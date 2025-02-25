@@ -11,12 +11,13 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         user_data={
-            'first_name':form.first_name.data,
-            'last_name':form.last_name.data,
+            'username':form.username.data,
             'email':form.email.data,
             'password':form.password.data,
         }
+        print(user_data)
         user = User.add_user(user_data)
+        print(user)
         if not user:
             pass
         flash('Your account has been created! You can now log in.', 'success')
@@ -45,3 +46,7 @@ def login():
         return 'success'
     return render_template('login.html',title='Login',form=form)
 
+
+@auth_bp.route('/logout',methods=['GET'])
+def logout():
+    pass

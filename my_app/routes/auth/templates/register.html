@@ -1,106 +1,103 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Creation</title>
-  <link rel="icon" href="/SHA/sha images/sha-removebg-preview.png" type="image/x-icon">
-    <!-- Latest compiled and minified CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+{% extends "base.html" %}
 
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="style.css">
-</head>
-<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+{% block title %}Account Creation - SHA Kenya{% endblock %}
 
-  <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-md pe-5 fixed-top navbar-dark bg-success">
-      <a href="#" class="navbar-brand"><img src="/SHA/sha images/sha_logo.svg" alt="" style="height: 40px;"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
-          <li class="nav-item">
-              <button class="btn btn-success btn-sm"><a class="nav-link" href="">Home</a></button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-success btn-sm"><a class="nav-link" href="#">FAQs</a></button>  
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-success btn-sm"><a class="nav-link" href="#">Resources</a></button>   
-          </li>
-          <li class="nav-item">
-                <button class="btn btn-success btn-sm"><a class="nav-link" href="#">eContracting</a></button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-success btn-sm"><a class="nav-link " href="#">Login</a></button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-success btn-sm"><a class="nav-link " href="index.html">Logout</a></button>
-          </li>
-        </ul>
-      </div>
-  </nav>
+{% block content %}
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-md pe-5 fixed-top navbar-dark bg-success">
+  <a href="#" class="navbar-brand"><img src="{{ url_for('static', filename='images/sha_logo.svg') }}" alt="" style="height: 40px;"></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+      <li class="nav-item">
+          <button class="btn btn-success btn-sm"><a class="nav-link" href="{{ url_for('home.home') }}">Home</a></button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-success btn-sm"><a class="nav-link" href="#">FAQs</a></button>  
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-success btn-sm"><a class="nav-link" href="#">Resources</a></button>   
+      </li>
+      <li class="nav-item">
+            <button class="btn btn-success btn-sm"><a class="nav-link" href="#">eContracting</a></button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-success btn-sm"><a class="nav-link" href="{{ url_for('auth.login') }}">Login</a></button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-success btn-sm"><a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a></button>
+      </li>
+    </ul>
+  </div>
+</nav>
 
+<!-- REGISTRATION FORM -->
+<div class="container-fluid pt-4 mt-5">
+  <div class="container text-end">
+    <div class="col"><a href="#"><img src="{{ url_for('static', filename='images/afya-removebg-preview.png') }}" alt="" style="height: 40px;"></a></div> 
+  </div>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 p-5 rounded shadow">
+        <h3 class="text-center"><strong>Register to Create Account with Afyangu</strong></h3>
+        <h6 class="text-muted text-center">Enter your details below to be authenticated</h6>
+        <h6 class="text-muted mt-3">Verify with an OTP code</h6>
 
-  <!-- register page -->
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
 
-  <div class="container-fluid  pt-4 mt-5">
-          <div class="container  text-end">
-            <div class="col"><a href="#"><img src="/SHA/sha images/afya-removebg-preview.png" alt="" style="height: 40px;"></a></div> 
+        <!-- Form -->
+        <form method="POST" action="{{ url_for('auth.register') }}" novalidate>
+          {{ form.hidden_tag() }}
+          <div class="form-group mt-3">
+            {{ form.id_type.label(class="form-label") }}
+            {{ form.id_type(class="form-control") }}
+            {% for error in form.id_type.errors %}
+              <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
           </div>
-    <div class="container mt-5">
-          <div class="row justify-content-center">
-            <div class="col-lg-6 p-5 rounded shadow">
-                <h3 class="text-center"><strong>Register to Create Account with Afyangu</strong></h3>
-                <h6 class="text-muted text-center">Enter your details below to be authenticated</h6>
-                <h6 class="text-muted mt-3">Verify with an OTP code</h6>
-
-                  <!-- form -->
-                <form class="needs-validation">
-                  <div class="form-group mt-3">
-                    <label for="id-type">Select ID Type:</label>
-                    <select class="form-control" id="id-type">
-                      <option>Kenyan Citizen</option>
-                      <option>Foreign Resident</option>
-                      <option>Refugee</option>
-                      <option>Mandate Number</option>
-                    </select>
-                  </div>
-                  <div class="form-group mt-3">
-                      <label for="idNumber">ID Number</label>
-                      <input type="number" class="form-control" id="idNumber" placeholder="Enter ID Number">
-                  </div>
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Please fill out this field.</div>
-                  <div class="form-group mt-3">
-                    <label for="fullName">Full Name:</label>
-                    <input type="text" class="form-control" id="fullName" placeholder="Enter Full Name">
-                  </div>
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Please fill out this field.</div>
-                  <div class="form-group mt-3">
-                    <label for="phoneNumber">Phone Number</label>
-                    <div class="input-group mb-2">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">+254<img src="/SHA/sha images/flag.jpg" alt="Flag" style="width: 20px;"></span>
-                      </div>
-                     <input type="number" class="form-control" id="phoneNumber" placeholder="712345678">
-                    </div>
-                  </div>
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Please fill out this field.</div>
-                  <p class="mt-4"><small class="form-text text-muted"><strong>A verification code will be sent to the provided phone number for authentication.</strong></small></p>
-                  <div class="d-grid">
-                    <button class="btn btn-primary btn-block py-2 px-5 mt-5" type="submit">Proceed</button>
-                  </div>
-                  
-               </form>
-           <p class="mt-3">Do you have an account? <a href="signin.html" class="text-info">Sign In</a></p>
-       </div>
+          <div class="form-group mt-3">
+            {{ form.id_number.label(class="form-label") }}
+            {{ form.id_number(class="form-control") }}
+            {% for error in form.id_number.errors %}
+              <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <div class="form-group mt-3">
+            {{ form.full_name.label(class="form-label") }}
+            {{ form.full_name(class="form-control") }}
+            {% for error in form.full_name.errors %}
+              <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <div class="form-group mt-3">
+            {{ form.phone_number.label(class="form-label") }}
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">+254<img src="{{ url_for('static', filename='images/flag.jpg') }}" alt="Flag" style="width: 20px;"></span>
+              </div>
+              {{ form.phone_number(class="form-control") }}
+            </div>
+            {% for error in form.phone_number.errors %}
+              <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <p class="mt-4"><small class="form-text text-muted"><strong>A verification code will be sent to the provided phone number for authentication.</strong></small></p>
+          <div class="d-grid">
+            {{ form.submit(class="btn btn-primary btn-block py-2 px-5 mt-5") }}
+          </div>
+        </form>
+        <p class="mt-3">Do you have an account? <a href="{{ url_for('auth.login') }}" class="text-info">Sign In</a></p>
       </div>
     </div>
   </div>
-  </body>
-  </html>
+</div>
+{% endblock %}
