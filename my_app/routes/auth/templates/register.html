@@ -45,16 +45,7 @@
         <h6 class="text-muted text-center">Enter your details below to be authenticated</h6>
         <h6 class="text-muted mt-3">Verify with an OTP code</h6>
 
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-              <div class="alert alert-{{ category }}">{{ message }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-
-        <!-- Form -->
+       <!-- Form -->
         <form method="POST" action="{{ url_for('auth.register') }}" novalidate>
           {{ form.hidden_tag() }}
           <div class="form-group mt-3">

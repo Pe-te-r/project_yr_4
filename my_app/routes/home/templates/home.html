@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block title %}Home - SHA Kenya{% endblock %}
 
 {% block content %}
@@ -9,10 +10,12 @@
       <div class="container shadow">
         <h1><strong>Introducing Social Health <span class="text-primary">(SHA)</span></strong></h1>
         <h5 class="mt-4">Ensuring a healthier, more equitable future for all through comprehensive coverage and quality care without financial worry</h5>
+        {%if not current_user.is_authenticated%}
         <div class="d-grid mt-5">
           <button class="btn p-2 mb-4 btn-block btn-success">
             <a href="{{ url_for('auth.register') }}" class="text-light" style="text-decoration: none;">Register Now</a>
           </button>
+          {%endif%}
         </div>
       </div>
     </div>

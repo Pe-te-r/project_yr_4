@@ -39,15 +39,9 @@
             <a class="nav-link" href="#">eContracting</a>
           </li>
           <!-- Dropdown Menu -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="registerDropdown" role="button" data-bs-toggle="dropdown">
-              Register
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ url_for('auth.register') }}">Register Individual</a></li>
-              <li><a class="dropdown-item" href="{{ url_for('auth.register') }}">Register Employee</a></li>
-              <li><a class="dropdown-item" href="#">Assisted Registration</a></li>
-            </ul>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.login') }}">Registration</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('auth.login') }}">Sign In</a>
