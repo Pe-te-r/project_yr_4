@@ -18,13 +18,18 @@ def register():
             "email": form.email.data,
             "password": form.password.data,
         }
-
-        user = User.add_user(user_data)
-        if user:
-            flash("Your account has been created! You can now log in.", "success")
-            return redirect(url_for("auth.login"))
+        user_exits = User.by_national_id(form.id_number.data)
+        if user_exits:
+            flash("User with the national ID already exists.", "danger")
         else:
-            flash("An error occurred. Please try again.", "danger")
+            user = User.add_user(user_data)
+            if user:
+                flash("Your account has been created! You can now log in.", "success")
+                return redirect(url_for("auth.login"))
+            else:
+                flash("An error occurred. Please try again.", "danger")
+    else:
+        print(form.errors)  # Print form errors for debugging
     return render_template("register.html", title="Register", form=form)
 
 
@@ -38,7 +43,7 @@ def login():
             flash("Login was successful.", "success")
             return redirect(url_for("home.home"))
         else:
-            print('here')
+            print("here")
             flash("Invalid national ID or password.", "danger")
     return render_template("login.html", title="Login", form=form)
 

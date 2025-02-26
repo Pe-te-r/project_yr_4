@@ -14,7 +14,7 @@ class RegistrationForm(FlaskForm):
     id_number = IntegerField('ID Number', validators=[DataRequired(), NumberRange(min=10000000, max=99999999)])
     full_name = StringField('Full Name', validators=[DataRequired(), Length(min=2, max=50)])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    password = StringField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
     phone_number = IntegerField('Phone Number', validators=[DataRequired(), NumberRange(min=700000000, max=799999999)])
     submit = SubmitField('Proceed')
     

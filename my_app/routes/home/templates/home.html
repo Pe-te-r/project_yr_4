@@ -1,26 +1,56 @@
 {% extends "base.html" %}
 
-
 {% block title %}Home - SHA Kenya{% endblock %}
 
 {% block content %}
   <!-- Home Page -->
-  <div class="container-fluid row mt-5 pt-5" style="height: 100vh;" id="home">
-    <div class="container text-start col-md-6 col-sm-12 col-lg-5 p-5">
-      <div class="container shadow">
-        <h1><strong>Introducing Social Health <span class="text-primary">(SHA)</span></strong></h1>
-        <h5 class="mt-4">Ensuring a healthier, more equitable future for all through comprehensive coverage and quality care without financial worry</h5>
-        {%if not current_user.is_authenticated%}
-        <div class="d-grid mt-5">
-          <button class="btn p-2 mb-4 btn-block btn-success">
-            <a href="{{ url_for('auth.register') }}" class="text-light" style="text-decoration: none;">Register Now</a>
-          </button>
-          {%endif%}
+  <div class="container mt-5 pt-5" id="home">
+    <div class="row align-items-center" style="min-height: 100vh;">
+      <!-- Left Section (Text) -->
+      <div class="col-lg-6 col-md-12 text-start p-5">
+        <div class="shadow p-4 bg-white rounded">
+          <h1><strong>Introducing Social Health <span class="text-primary">(SHA)</span></strong></h1>
+          <h5 class="mt-3">
+            Ensuring a healthier, more equitable future for all through comprehensive coverage and quality care without financial worry.
+          </h5>
+          
+          <!-- Chatbot Information -->
+          <p class="mt-3">
+            🌟 **Need quick answers?** Our intelligent **SHA Chatbot** is here to assist you!  
+            Get instant information on healthcare services, disease costs, and how SHA is improving health coverage in Kenya.
+          </p>
+
+          <p class="mt-2">
+            📌 **Explore healthcare costs**: Check treatment expenses for various diseases under the new SHA system, ensuring transparency in medical coverage.
+          </p>
+
+          {% if not current_user.is_authenticated %}
+          <div class="mt-4">
+            <a href="{{ url_for('auth.register') }}" class="btn btn-success btn-lg text-light">Register Now</a>
+          </div>
+          {% endif %}
         </div>
       </div>
+
+      <!-- Right Section (Image) -->
+      <div class="col-lg-6 col-md-12 text-center">
+        <img src="{{ url_for('static', filename='images/homebg.PNG') }}" alt="Home Background" class="img-fluid rounded shadow">
+      </div>
     </div>
-    <div class="col-lg-5 col-md-6 container col-sm-12 pt-5">
-      <img src="{{ url_for('static', filename='images/homebg.PNG') }}" alt="Home Background" style="width:100%;">
+
+    <!-- Additional Section: SHA Chatbot -->
+    <div class="row mt-5">
+      <div class="col-lg-6 col-md-12 text-center">
+        <img src="{{ url_for('static', filename='images/chatbot.png') }}" alt="SHA Chatbot" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-lg-6 col-md-12 p-4">
+        <h2 class="text-primary"><strong>Meet Our SHA Chatbot 🤖</strong></h2>
+        <p class="mt-3">
+          Get **24/7 instant answers** about SHA, healthcare plans, and disease costs.  
+          Our chatbot ensures **faster access to critical health information** for all Kenyans.
+        </p>
+        <a href="{{ url_for('home.home') }}" class="btn btn-primary btn-lg">Try Our Chatbot</a>
+      </div>
     </div>
   </div>
   <!-- End of Home Page -->
