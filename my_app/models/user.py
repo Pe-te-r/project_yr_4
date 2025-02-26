@@ -60,7 +60,10 @@ class User(db.Model):
     def by_id(cls,id):
         return cls.query.filter_by(id=UUID(id)).first()
     
-    
+    @classmethod
+    def by_national_id(cls,national_id):
+        return cls.query.filter_by(national_id=national_id).first()
+
 class Password(db.Model):
     __tablename__='password'
     user_id = db.Column(db.UUID,db.ForeignKey('user.id'),primary_key=True)

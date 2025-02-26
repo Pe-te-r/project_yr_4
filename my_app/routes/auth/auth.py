@@ -3,7 +3,6 @@ from .form import RegistrationForm,LoginForm
 from my_app.models import User
 
 
-
 auth_bp = Blueprint('auth', __name__, template_folder='templates')
 
 @auth_bp.route('/register',methods=['GET','POST'])
@@ -15,7 +14,7 @@ def register():
             'id_type':form.id_type.data,
             'national_id':form.id_number.data,
             'phone':form.phone_number.data,
-            'email':form.email.data,
+            'email':form.email.data, 
             'password':form.password.data,
         }
 
@@ -27,19 +26,19 @@ def register():
         flash('Your account has been created! You can now log in.', 'success')
         return redirect(url_for('auth.login'))
     return  render_template('register.html',title='register',form=form)
-
         
 @auth_bp.route('/login',methods=['GET','POST'])
 def login():
     form=LoginForm()
     if form.validate_on_submit():
-        print(form.email.data)
         user_data = {
-            'email':form.email.data,
-            'password':form.password.data
+            'id_type':form.id_type.data,
+            'national_id':form.id_number.data,
+            'password':form.password.data,
         }
-        
+        print(user_data) 
         user = User.by_email(form.email.data)
+    
         if not user:
             flash('User with this email not found.', 'error')
             return redirect(url_for('auth.login'))

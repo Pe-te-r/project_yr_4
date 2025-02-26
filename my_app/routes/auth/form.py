@@ -19,6 +19,12 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Proceed')
     
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    id_type = SelectField(
+        'ID Type',
+        choices=[(id_type.value, id_type.value) for id_type in IDType],  # Dynamically generate choices
+        validators=[DataRequired()]
+    )
+
+    id_number = IntegerField('ID Number', validators=[DataRequired(), NumberRange(min=10000000, max=99999999)])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')

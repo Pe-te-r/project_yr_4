@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
+ 
 
 class Config:
     # Secret key for session management and security
