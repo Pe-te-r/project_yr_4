@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user,login_required
 from .form import RegistrationForm, LoginForm
 from my_app.models import User
 
@@ -43,12 +43,12 @@ def login():
             flash("Login was successful.", "success")
             return redirect(url_for("home.home"))
         else:
-            print("here")
             flash("Invalid national ID or password.", "danger")
     return render_template("login.html", title="Login", form=form)
 
 
 @auth_bp.route("/logout")
+@login_required
 def logout():
     logout_user()
     flash("You have been logged out.", "success")

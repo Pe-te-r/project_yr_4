@@ -49,7 +49,7 @@
           <!-- ID Type -->
           <div class="form-group mt-3">
             {{ form.id_type.label(class="form-label") }}
-            {{ form.id_type(class="form-control") }}
+            {{ form.id_type(class="form-control" + (" is-invalid" if form.id_type.errors else "")) }}
             {% for error in form.id_type.errors %}
               <div class="invalid-feedback">{{ error }}</div>
             {% endfor %}
@@ -58,7 +58,7 @@
           <!-- ID Number -->
           <div class="form-group mt-3">
             {{ form.id_number.label(class="form-label") }}
-            {{ form.id_number(class="form-control") }}
+            {{ form.id_number(class="form-control" + (" is-invalid" if form.id_number.errors else "")) }}
             {% for error in form.id_number.errors %}
               <div class="invalid-feedback">{{ error }}</div>
             {% endfor %}
@@ -68,10 +68,10 @@
           <div class="form-group mt-3">
             <label class="form-label">Enter OTP Code</label>
             <div class="d-flex gap-2">
-              {{ form.otp1(class="form-control text-center", style="width: 50px;") }}
-              {{ form.otp2(class="form-control text-center", style="width: 50px;") }}
-              {{ form.otp3(class="form-control text-center", style="width: 50px;") }}
-              {{ form.otp4(class="form-control text-center", style="width: 50px;") }}
+              {{ form.otp1(class="form-control text-center" + (" is-invalid" if form.otp1.errors else ""), style="width: 50px;") }}
+              {{ form.otp2(class="form-control text-center" + (" is-invalid" if form.otp2.errors else ""), style="width: 50px;") }}
+              {{ form.otp3(class="form-control text-center" + (" is-invalid" if form.otp3.errors else ""), style="width: 50px;") }}
+              {{ form.otp4(class="form-control text-center" + (" is-invalid" if form.otp4.errors else ""), style="width: 50px;") }}
             </div>
             {% for field in [form.otp1, form.otp2, form.otp3, form.otp4] %}
               {% for error in field.errors %}
@@ -83,7 +83,7 @@
           <!-- Password -->
           <div class="form-group mt-3">
             {{ form.password.label(class="form-label") }}
-            {{ form.password(class="form-control") }}
+            {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else "")) }}
             {% for error in form.password.errors %}
               <div class="invalid-feedback">{{ error }}</div>
             {% endfor %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - SHA Kenya{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <!-- About Section -->
+  <div class="text-center">
+    <h1 class="fw-bold">About <span class="text-primary">SHA Kenya</span></h1>
+    <p class="lead">Revolutionizing healthcare access with technology-driven solutions.</p>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-lg-6">
+      <img src="{{ url_for('static', filename='images/about.jpg') }}" class="img-fluid rounded shadow" alt="About SHA">
+    </div>
+    <div class="col-lg-6 d-flex align-items-center">
+      <p class="fs-5">SHA Kenya is committed to providing seamless healthcare access to citizens through advanced technology and AI-powered solutions. Our chatbot helps users understand different diseases, their treatments, and associated costs under the new Kenyan healthcare system.</p>
+    </div>
+  </div>
+
+  <!-- Meet the Team -->
+  <div class="text-center my-5">
+    <h2 class="fw-bold">Meet Our Team</h2>
+  </div>
+  
+  <div class="row">
+    {% for member in team %}
+      <div class="col-md-4">
+        <div class="card shadow-sm text-center p-3">
+          <img src="{{ url_for('static', filename='images/' + member.image) }}" class="rounded-circle mb-3" width="100" height="100" alt="{{ member.name }}">
+          <h4 class="fw-bold">{{ member.name }}</h4>
+          <h6 class="text-primary">{{ member.role }}</h6>
+          <p class="small">{{ member.bio }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Testimonials -->
+  <div class="text-center my-5">
+    <h2 class="fw-bold">What Our Developers Say</h2>
+  </div>
+
+  <div class="row">
+    {% for testimonial in testimonials %}
+      <div class="col-md-4">
+        <div class="card p-3 shadow-sm">
+          <p>"{{ testimonial.message }}"</p>
+          <h6 class="fw-bold text-end">- {{ testimonial.author }}</h6>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}
