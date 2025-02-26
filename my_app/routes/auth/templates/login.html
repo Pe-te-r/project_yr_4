@@ -43,7 +43,7 @@
         <h6 class="text-muted text-center">Enter your details below to authenticate</h6>
 
         <!-- Form -->
-        <form method="POST" action="{{ url_for('auth.login') }}" novalidate>
+        <form method="POST" class="login" action="{{ url_for('auth.login') }}" novalidate>
           {{ form.hidden_tag() }}
 
           <!-- ID Type -->

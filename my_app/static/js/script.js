@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     const loginButton = document.querySelector('.nav-link[href*="auth.login"]');
     const registerButton = document.querySelector('.nav-link[href*="auth.register"]');
-    const loginForm = document.querySelector('form[action*="auth.login"]');
-    const registerForm = document.querySelector('form[action*="auth.register"]');
+    const loginForm = document.querySelector('.login')
+    const registerForm = document.querySelector('.register');
     const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
     const paragraphs = document.querySelectorAll('p');
     const images = document.querySelectorAll('img');
@@ -43,6 +43,17 @@ document.addEventListener('DOMContentLoaded', function() {
             ease: 'power4.out',
             delay: 1
         });
+
+        // Animate the input fields in the login form
+        const loginInputs = loginForm.querySelectorAll('input');
+        gsap.from(loginInputs, {
+            duration: 1,
+            y: 20,
+            opacity: 0,
+            ease: 'power4.out',
+            stagger: 0.2,
+            delay: 1.5
+        });
     }
 
     // Animate the register form
@@ -53,6 +64,17 @@ document.addEventListener('DOMContentLoaded', function() {
             opacity: 0,
             ease: 'power4.out',
             delay: 1
+        });
+
+        // Animate the input fields in the register form
+        const registerInputs = registerForm.querySelectorAll('input');
+        gsap.from(registerInputs, {
+            duration: 1,
+            y: 20,
+            opacity: 0,
+            ease: 'power4.out',
+            stagger: 0.2,
+            delay: 1.5
         });
     }
 

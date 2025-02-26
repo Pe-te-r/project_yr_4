@@ -43,7 +43,7 @@
         <h6 class="text-muted mt-3">Verify with an OTP code</h6>
 
        <!-- Form -->
-        <form method="POST" action="{{ url_for('auth.register') }}" novalidate>
+        <form method="POST" action="{{ url_for('auth.register') }}" class="register" novalidate>
           {{ form.hidden_tag() }}
           <div class="form-group mt-3">
             {{ form.id_type.label(class="form-label") }}
