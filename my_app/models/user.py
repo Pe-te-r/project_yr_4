@@ -20,6 +20,8 @@ class User(db.Model):
     password = db.Relationship('Password',backref='user',uselist=False)
     
     def verify_password(self,password):
+        print(password)
+        print(self.password.password==password)
         return self.password.password==password
         
 

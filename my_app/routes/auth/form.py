@@ -26,5 +26,9 @@ class LoginForm(FlaskForm):
     )
 
     id_number = IntegerField('ID Number', validators=[DataRequired(), NumberRange(min=10000000, max=99999999)])
+    otp1 = StringField(validators=[DataRequired(), Length(min=1, max=1)])
+    otp2 = StringField(validators=[DataRequired(), Length(min=1, max=1)])
+    otp3 = StringField(validators=[DataRequired(), Length(min=1, max=1)])
+    otp4 = StringField(validators=[DataRequired(), Length(min=1, max=1)])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')

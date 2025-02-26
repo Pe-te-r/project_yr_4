@@ -33,20 +33,18 @@ def login():
     if form.validate_on_submit():
         user_data = {
             'id_type':form.id_type.data,
+            "otp":form.otp1.data + form.otp2.data + form.otp3.data + form.otp4.data,
             'national_id':form.id_number.data,
             'password':form.password.data,
         }
         print(user_data) 
-        user = User.by_email(form.email.data)
-    
+        user = User.by_national_id(form.id_number.data)
         if not user:
             flash('User with this email not found.', 'error')
-            return redirect(url_for('auth.login'))
         if not user.verify_password(form.password.data):
             flash('User password not correct.', 'error')
-            return redirect(url_for('auth.login'))
         flash('Login was successful.', 'success')
-        return 'success'
+        return redirect(url_for('home.home'))
     return render_template('login.html',title='Login',form=form)
 
 
