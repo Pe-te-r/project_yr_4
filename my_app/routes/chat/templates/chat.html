@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Application - SHA Kenya{% endblock %}
+
+{% block content %}
+<div class="container-fluid d-flex p-0" style="height: 100vh; overflow: hidden;">
+    <!-- Sidebar -->
+    <nav class="bg-dark text-white d-flex flex-column p-3" id="sidebar" 
+         style="width: 250px; min-width: 250px; height: 100vh; position: sticky; top: 0;">
+        <h4 class="text-center">AI Chatbot</h4>
+
+        <!-- Navigation Links -->
+        <ul class="nav flex-column mt-4">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white">Application</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white">Chat History</a>
+            </li>
+        </ul>
+
+        <!-- Chat History -->
+        <div class="mt-4">
+            <h6 class="text-light">Past Conversations</h6>
+            <ul class="list-group small">
+                <li class="list-group-item bg-transparent text-white border-light">How does SHA work?</li>
+                <li class="list-group-item bg-transparent text-white border-light">Cost of treatment?</li>
+                <li class="list-group-item bg-transparent text-white border-light">Who is eligible?</li>
+            </ul>
+        </div>
+
+        <div class="mt-auto p-3">
+            <p class="text-light small text-center">Powered by SHA Kenya AI</p>
+        </div>
+    </nav>
+
+    <!-- Main Chat Section -->
+    <div class="flex-grow-1 d-flex flex-column" style="height: 100vh;">
+        <!-- Chat Display -->
+        <div class="container-fluid p-4 flex-grow-1" id="chat-display" 
+             style="overflow-y: auto;">
+            <div class="chat-message bg-light p-3 rounded mb-3">
+                <strong>Bot:</strong> Welcome! Ask me anything about SHA Kenya.
+            </div>
+            <!-- Messages will be dynamically added here -->
+        </div>
+
+        <!-- Sticky Input Box -->
+        <div class="bg-white p-3 shadow-sm border-top" style="position: sticky; bottom: 0; width: 100%;">
+            <div class="input-group">
+                <input type="text" id="chat-input" class="form-control" placeholder="Type your message...">
+                <button class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
