@@ -3,7 +3,7 @@ from flask import Blueprint,render_template
 chatp_bp = Blueprint('chat', __name__, template_folder='templates')
 
 @chatp_bp.route("/chat")
-def about():
+def chat():
     team = [
         {"name": "John Doe", "role": "Project Lead", "image": "john.jpg", "bio": "John has 10+ years in healthcare tech and leads SHA development."},
         {"name": "Jane Smith", "role": "Backend Engineer", "image": "jane.jpg", "bio": "Jane is an expert in Flask and security, ensuring SHA remains robust."},
